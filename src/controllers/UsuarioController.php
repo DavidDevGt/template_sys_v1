@@ -8,29 +8,20 @@ class UsuarioController {
         $usuarios = Usuario::all();
         // Lógica para mostrar los usuarios
     }
-    // Más métodos
 
-    // public function store() {
-    //     $usuario = new Usuario;
-    //     $usuario->setNombre($_POST['nombre']);
-    //     $usuario->setEmail($_POST['email']);
-    //     $usuario->setPassword($_POST['password']);
-    //     $usuario->save();
-    //     // Lógica para guardar el usuario
-    // }
+    public function store() {
+        $usuario = Usuario::create($_POST);
+        // Lógica adicional después de guardar el usuario
+    }
 
-    // public function update($id) {
-    //     $usuario = Usuario::find($id);
-    //     $usuario->setNombre($_POST['nombre']);
-    //     $usuario->setEmail($_POST['email']);
-    //     $usuario->setPassword($_POST['password']);
-    //     $usuario->save();
-    //     // Lógica para actualizar el usuario
-    // }
+    public function update($id) {
+        $usuario = Usuario::find($id);
+        $usuario->update($_POST);
+        // Lógica adicional después de actualizar el usuario
+    }
 
-    // public function destroy($id) {
-    //     $usuario = Usuario::find($id);
-    //     $usuario->delete();
-    //     // Lógica para eliminar el usuario
-    // }
+    public function destroy($id) {
+        Usuario::destroy($id);
+        // Lógica adicional después de eliminar el usuario
+    }
 }

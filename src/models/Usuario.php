@@ -1,58 +1,22 @@
 <?php
+
 namespace TemplateSys\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Usuario extends Model {
+class Usuario extends Model
+{
     protected $table = 'usuarios';
-    protected $fillable = ['nombre', 'email', 'password'];
+    protected $fillable = ['nombre', 'email', 'password', 'rol_id', 'activo', 'ultimo_login'];
 
-    // Más metodos de la clase Usuario
-    public function setPassword($password) {
-        if ($password !== null && $password !== '') {
-            $this->update([
-                'password' => password_hash($password, PASSWORD_DEFAULT)
-            ]);
+    public function setPasswordAttribute($value)
+    {
+        if (!empty($value)) {
+            $this->attributes['password'] = password_hash($value, PASSWORD_DEFAULT);
         }
     }
 
-    public function setNombre($nombre) {
-        if ($nombre !== null && $nombre !== '') {
-            $this->update([
-                'nombre' => $nombre
-            ]);
-        }
+    public function rol() {
+        return $this->belongsTo('TemplateSys\Models\Rol', 'rol_id');
     }
-
-    public function setEmail($email) {
-        if ($email !== null && $email !== '') {
-            $this->update([
-                'email' => $email
-            ]);
-        }
-    }
-
-    // public function setRol($rol) {
-    //     if ($rol !== null && $rol !== '') {
-    //         $this->update([
-    //             'rol' => $rol
-    //         ]);
-    //     }
-    // }
-
-    // public function setActivo($activo) {
-    //     if ($activo !== null && $activo !== '') {
-    //         $this->update([
-    //             'activo' => $activo
-    //         ]);
-    //     }
-    // }
-
-    // public function setUltimoLogin($ultimo_login) {
-    //     if ($ultimo_login !== null && $ultimo_login !== '') {
-    //         $this->update([
-    //             'ultimo_login' => $ultimo_login
-    //         ]);
-    //     }
-    // }
 }
