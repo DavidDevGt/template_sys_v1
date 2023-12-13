@@ -24,4 +24,12 @@ class UsuarioController {
         Usuario::destroy($id);
         // Lógica adicional después de eliminar el usuario
     }
+
+    public function register() {
+        // Lógica para registrar un usuario
+    }
+    
+    public function login() {
+        // Lógica para iniciar sesión
+    }
 }
